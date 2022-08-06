@@ -1,7 +1,10 @@
-import express from 'express';
-const app = express();
+import app from "./app";
+import { connect } from "./db";
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
-});
+async function main() {
+    connect();
+    await app.listen(app.get("port"));
+    console.log(`Server on port ${app.get("port")}`);
+}
 
+main();
